@@ -1,4 +1,5 @@
-var url = "https://demoapp1-a502466.apaas.us2.oraclecloud.com/";
+//var url = "https://demoapp1-a502466.apaas.us2.oraclecloud.com/";
+var url = "https://nodemessageboard-a502466.apaas.us2.oraclecloud.com"
 //var url = "http://localhost:8089";
       //Hide all elements; display loading screen
       function hideAll() {
