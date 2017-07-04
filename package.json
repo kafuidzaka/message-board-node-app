@@ -1,0 +1,23 @@
+{
+  "name": "message-board",
+  "version": "0.0.1",
+  "description": "A simple message board supporting topics and comments (no persistence, no update or remove)",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \\\"Error: no test specified\\\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kafuidzaka/message-board-node-app.git"
+  },
+  "keywords": [
+    "messageboard"
+  ],
+  "author": "Oracle, Lucas Jellema, Kafui Dzaka",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kafuidzaka/message-board-node-app/issues"
+  },
+  "homepage": "https://github.com/kafuidzaka/message-board-node-app#readme"
+}
