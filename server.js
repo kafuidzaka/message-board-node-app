@@ -67,9 +67,9 @@ function handleRequest(request, response, requestBody) {
       response.end(JSON.stringify(topicDetail[topicId]));
     }
   }
-    if(request.url === “/index”){
-        fs.readFile(“index.html”, function (err, data) {
-            response.writeHead(200, {‘Content-Type’: ‘text/html’});
+    if(request.url === "/index"){
+        fs.readFile("index.html", function (err, data) {
+            response.writeHead(200, {'Content-Type': 'text/html'});
             response.write(data);
             response.end();
         });
