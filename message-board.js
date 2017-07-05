@@ -1,6 +1,6 @@
 //var url = "https://demoapp1-a502466.apaas.us2.oraclecloud.com/";
-//var url = "https://nodemessageboard-a502466.apaas.us2.oraclecloud.com";
-var url = "";
+var url = "https://nodemessageboard-a502466.apaas.us2.oraclecloud.com";
+//var url = "";
 //var url = "http://localhost:8089";
       //Hide all elements; display loading screen
       function hideAll() {
@@ -18,10 +18,10 @@ var url = "";
         xmlhttp.onreadystatechange = function () {
           if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
             var topics = JSON.parse(xmlhttp.responseText);
-            var tStr = '<h1>The Bulletin</h1>';
-            tStr += '<ul>';
+            var tStr = '<h1 class="display-1 text-center">The Bulletin</h1>';
+            tStr += '<ul class="list-group">';
             for (i = 0; i < topics.length; i++) {
-              tStr += '<li><a href="#" onclick="displayTopic(' + topics[i].id + ')">' + topics[i].title + '</a></li>';
+              tStr += '<li class="h4 list-group-item"><a href="#" onclick="displayTopic(' + topics[i].id + ')">' + topics[i].title + '</a></li>';
             }
             tStr += '</ul>';
             document.getElementById('topic_list').innerHTML = tStr;
@@ -49,18 +49,20 @@ var url = "";
             //var deleteButtonString = document.getElementById('delete_comment_button').outerHTML; 
             //when uncommenting above code, add deleteButton String Variable to comments variable
              
-            var comments = "<ul>";
+            var comments = "<ul class='list-group'>";
             for (i = 0; i < topic.comments.length; i++) {
               var topicId_string = topicId.toString();  
               var unique_comment_id = topicId_string + i ; 
               
-                comments += "<li " + "id=" + unique_comment_id + ">" + topic.comments[i] + "</li>";  
+                comments += "<li class='list-group-item'" + "id=" + unique_comment_id + ">" + topic.comments[i] + "</li>";  
             }
             comments += "</ul>";
             
             document.getElementById("topic_detail_comments").innerHTML = comments;
             document.getElementById('loading').setAttribute('style', 'display:none');
             document.getElementById('topic_detail').setAttribute('style', '');
+            document.getElementById('topic_detail_text').setAttribute('class', 'h4');
+            document.getElementById('topic_detail_comments').setAttribute('class', 'h5');
             document.getElementById('comment').setAttribute('style', '');
             document.getElementById('return_to_topic_list').setAttribute('style', '');
           }

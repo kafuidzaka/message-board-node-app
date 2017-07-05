@@ -1,4 +1,8 @@
 var http = require('http');
+var fs = require("fs");
+//var connect = require('connect');
+//var serveStatic = require('serve-static');
+
 
 var PORT = process.env.PORT || 8089;
 
@@ -28,24 +32,6 @@ addComment(id1, "Good topic");
 addComment(id2, "This is a comment");
 addComment(id2, "This is another comment");
 
-//node server
-var server = http.createServer(function (request, response) {
-  response.setHeader('Access-Control-Allow-Origin', '*');
-  response.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-  response.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-  response.setHeader('Access-Control-Allow-Credentials', true);
-
-  console.log('TopicList=' + JSON.stringify(topicList));
-  console.log('TopicDetail=' + JSON.stringify(topicDetail));
-  var requestBody = '';
-  request.on('data', function (data) {
-    requestBody += data;
-  });
-  request.on('end', function () {
-    handleRequest(request, response, requestBody);
-  });
-});
-
 //RESTful request handler
 function handleRequest(request, response, requestBody) {
   console.log(request.method + ":" + request.url + ' >>' + requestBody);
@@ -70,12 +56,35 @@ function handleRequest(request, response, requestBody) {
     if(request.url === "/index"){
         fs.readFile("index.html", function (err, data) {
             response.writeHead(200, {'Content-Type': 'text/html'});
-            response.write(data);
-            response.end();
+            response.write(data, function(err) {response.end();});
+            //response.end();
         });
-    } 
+    }
 }
+
+//node server
+var server = http.createServer(function (request, response) {
+  response.setHeader('Access-Control-Allow-Origin', '*');
+  response.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  response.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+  response.setHeader('Access-Control-Allow-Credentials', true);
+
+  console.log('TopicList=' + JSON.stringify(topicList));
+  console.log('TopicDetail=' + JSON.stringify(topicDetail));
+  var requestBody = '';
+  request.on('data', function (data) {
+    requestBody += data;
+  });
+  request.on('end', function () {
+    handleRequest(request, response, requestBody);
+  });
+});
+
+//connect().use(serveStatic(index.html)).listen(8089, function(){
+    //console.log('Server running on 8080...');
+//});
 
 server.listen(PORT, function () {
   console.log('Server running...');
+    
 });
